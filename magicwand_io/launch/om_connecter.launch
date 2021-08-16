@@ -1,0 +1,20 @@
+<launch>
+<!-- om Connecter -->
+<node pkg="magicwand_io" type="om_connecter.py" name="om_connecter"  output="screen" />
+
+<!-- <arg name="manager_name" default="nodelet_manager"/>
+  <arg name="nodelet" default="false"/>
+  <arg name="wheel_radius" default="0.075"/>
+  <arg name="reduction_ratio" default="100.0"/>
+
+  <node pkg="nodelet" type="nodelet" args="load magicwand/om_connecter $(arg manager_name)" name="om_connecter" output="screen" if="$(arg nodelet)">
+    <param name="wheel_radius"            value="$(arg wheel_radius)"/>
+    <param name="reduction_ratio"      value="$(arg reduction_ratio)"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" args="standalone magicwand/om_connecter" name="om_connecter" output="screen" unless="$(arg nodelet)">
+    <param name="wheel_radius"            value="$(arg wheel_radius)"/>
+    <param name="reduction_ratio"      value="$(arg reduction_ratio)"/>
+  </node> -->
+
+</launch>

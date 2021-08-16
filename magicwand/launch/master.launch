@@ -1,0 +1,33 @@
+<launch>
+<!-- global option -->
+<arg name="nodelet" default="true"/>
+<arg name="debug" default="false"/>
+<arg name="online" default="true"/>
+<arg name="use_keyboard" default="true"/>
+<arg name="manager_name" value="nodelet_manager" />
+
+<!-- motor -->
+<include file="$(find om_modbus_master)/launch/om_modbusRTU.launch" if="$(arg online)">
+    <arg name="com" value="/dev/ttyUSB0"/>
+    <arg name="topicID" value="1"/>
+    <arg name="baudrate" value="115200"/>
+    <arg name="updateRate" value="1000"/>
+    <arg name="firstGen" value=""/>
+    <arg name="secondGen" value="1,2,"/>
+</include>
+
+<include file="$(find magicwand_io)/launch/om_connecter.launch" if="$(arg online)"/>
+
+<include file="$(find magicwand)/launch/nodelet.launch" if="$(arg nodelet)" >
+    <arg name="manager_name" value="$(arg manager_name)" />
+    <arg name="debug" value="$(arg debug)" />
+</include>
+
+<include file="$(find magicwand_io)/launch/keyboard_to_motor.launch" if="$(arg use_keyboard)" >
+    <arg name="manager_name" value="$(arg manager_name)" />
+    <arg name="nodelet" value="$(arg nodelet)" />
+    <arg name="max_vel" value="0.2"/>
+    <arg name="vel_increment" value="0.01"/>
+</include>
+
+</launch>

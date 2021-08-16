@@ -1,0 +1,5 @@
+<library path="lib/libmagicwand_io">
+  <class name="magicwand/keyboard_to_motor" type="mw::KeyboardToMotor" base_class_type="nodelet::Nodelet"/>
+  <class name="magicwand/om_connecter" type="mw::omConnecter" base_class_type="nodelet::Nodelet"/>
+</library>
+

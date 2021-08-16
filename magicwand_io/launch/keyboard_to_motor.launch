@@ -1,0 +1,20 @@
+<launch>
+
+  <arg name="manager_name" default="nodelet_manager"/>
+  <arg name="nodelet" default="false"/>
+  <arg name="max_vel" default="1.5"/>
+  <arg name="vel_increment" default="0.1"/>
+
+  <node name="keyboard" pkg="keyboard" type="keyboard" output="screen" />
+
+  <node pkg="nodelet" type="nodelet" args="load magicwand/keyboard_to_motor $(arg manager_name)" name="keyboard_to_motor" output="screen" if="$(arg nodelet)">
+    <param name="max_vel"            value="$(arg max_vel)"/>
+    <param name="vel_increment"      value="$(arg vel_increment)"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" args="standalone magicwand/keyboard_to_motor" name="keyboard_to_motor" output="screen" unless="$(arg nodelet)">
+    <param name="max_vel"            value="$(arg max_vel)"/>
+    <param name="vel_increment"      value="$(arg vel_increment)"/>
+  </node>
+
+</launch>
